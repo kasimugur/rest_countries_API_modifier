@@ -1,15 +1,14 @@
 
-import React from 'react'
-import data from "@/data.json"
+import React, { ReactNode } from 'react'
+
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import Link from 'next/link'
-export default function CountryCard() {
+export default function CountryCard({e}:any) {
   return (
     <>
 
-      {
-        data.map(e => (
-          <Card key={e.numericCode} sx={{ maxWidth: 300 }}>
+    
+          <Card  sx={{ maxWidth: 300 }}>
             <CardMedia
               sx={{ height: 160 }}
               image={e.flag}
@@ -35,8 +34,6 @@ export default function CountryCard() {
               </Link>
             </CardActions>
           </Card>
-        ))
-      }
     </>
   )
 }
