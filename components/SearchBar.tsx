@@ -4,17 +4,24 @@ import React from 'react'
 import data from '@/data.json'
 import { useRoutesContext } from '@/app/context/RoutesContext'
 export default function SearchBar() {
+  const { filterData, setFilterData, filterName, setFilterName}:any = useRoutesContext() 
   const RegionData = data.map(reg => reg.region )
   const Duplicates = RegionData.filter((reg, index,self) => self.indexOf(reg) !== index  ) 
   const uniqueDuplicates = [...new Set(Duplicates)];
-  // const [value, setValue] = useState<string | null>(null);
-  const { filterData,setFilterData}:any = useRoutesContext() 
   
   return (
-    <div>
-      <div>{`value: ${filterData !== null ? `'${filterData}'` : 'null'}`}</div>
+    <div className='flex justify-between'>
+        <TextField
+        value={filterName}
+        onChange={(e) => setFilterName(e.target.value.toLowerCase())}
+        className=' bg-rest-darkBlue '
+          id="outlined-textarea"
+          label="Country Search"
+          placeholder="Country"
+          multiline
+        />
       <Autocomplete
-      className='bg-rest-veryDarkBlue'
+      className='bg-rest-darkBlue'
         value={filterData}
         onChange={(event: any, newValue: string | null) => {
           setFilterData(newValue);
