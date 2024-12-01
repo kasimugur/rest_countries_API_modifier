@@ -1,5 +1,6 @@
 'use client'
 import { createContext, ReactNode, useContext, useState } from "react";
+import datajso from '@/data.json'
 interface Currency {
   code: string;
   name: string;
@@ -57,10 +58,16 @@ interface routesType {
 const RoutesContext = createContext<routesType | undefined>(undefined)
 
 export const RoutesContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-const [filterData, setFilterData] = useState<string | null>(null)
+  const [filterData, setFilterData] = useState<string | null>(null)
+  const [filterName, setFilterName] = useState<string | null>('')
+  const inputSearch = datajso.filter((item) => item.name.toLowerCase().includes(filterName))
+  console.log(inputSearch)
   const data = {
     filterData,
-    setFilterData
+    setFilterData,
+    filterName,
+    setFilterName,
+    inputSearch
   }
   return (
     <RoutesContext.Provider value={data} >
@@ -68,10 +75,19 @@ const [filterData, setFilterData] = useState<string | null>(null)
     </RoutesContext.Provider>
   )
 }
-export const useRoutesContext = ()=> {
+export const useRoutesContext = () => {
   const context = useContext(RoutesContext)
   if (!context) {
-throw new Error("useRoutesContext must be used within a RoutesProvider")
+    throw new Error("useRoutesContext must be used within a RoutesProvider")
   }
   return context
 }
+
+
+
+
+
+
+
+
+
