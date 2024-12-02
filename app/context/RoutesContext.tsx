@@ -61,7 +61,6 @@ export const RoutesContextProvider: React.FC<{ children: ReactNode }> = ({ child
   const [filterData, setFilterData] = useState<string | null>(null)
   const [filterName, setFilterName] = useState<string | null>('')
   const inputSearch = datajso.filter((item) => item.name.toLowerCase().includes(filterName))
-  console.log(inputSearch)
   const data = {
     filterData,
     setFilterData,

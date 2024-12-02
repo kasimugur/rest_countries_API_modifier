@@ -10,11 +10,12 @@ export default function SearchBar() {
   const uniqueDuplicates = [...new Set(Duplicates)];
   
   return (
-    <div className='flex justify-between'>
-        <TextField
+    <div className='flex  justify-between'>
+        <TextField 
+
         value={filterName}
         onChange={(e) => setFilterName(e.target.value.toLowerCase())}
-        className=' bg-rest-darkBlue '
+        className=' bg-rest-darkBlue w-96'
           id="outlined-textarea"
           label="Country Search"
           placeholder="Country"
