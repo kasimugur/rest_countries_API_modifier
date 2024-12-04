@@ -1,11 +1,11 @@
+// 'use client'
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useColorScheme } from '@mui/material/styles';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Button, Menu } from '@mui/material';
 
 export default function ThemaModal() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -21,6 +21,7 @@ export default function ThemaModal() {
   if (!mode) {
     return null;
   }
+  console.log("theme modal", mode)
   return (
     <>
       <div className=''>
@@ -31,7 +32,7 @@ export default function ThemaModal() {
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
         >
-          Dashboard
+          Dashboardd
         </Button>
         <Menu
           id="basic-menu"
@@ -40,9 +41,8 @@ export default function ThemaModal() {
           onClose={handleClose}
           MenuListProps={{
             'aria-labelledby': 'basic-button',
-          }}
-
-        ><FormControl>
+          }}>
+          <FormControl>
             <RadioGroup
               aria-labelledby="demo-theme-toggle"
               name="theme-toggle"
@@ -50,8 +50,7 @@ export default function ThemaModal() {
               value={mode}
               onChange={(event) =>
                 setMode(event.target.value as 'system' | 'light' | 'dark')
-              }
-            >
+              }>
               <FormControlLabel value="system" control={<Radio />} label="System" />
               <FormControlLabel value="light" control={<Radio />} label="Light" />
               <FormControlLabel value="dark" control={<Radio />} label="Dark" />
