@@ -2,10 +2,11 @@
 
 import localFont from "next/font/local";
 import "./globals.css";
-import { RoutesContextProvider } from "./context/RoutesContext";
+import { RoutesContextProvider, useRoutesContext } from "./context/RoutesContext";
 import {  Container, createTheme, ThemeProvider } from "@mui/material";
 import HeaderPage from "@/components/Header";
 import { useMemo } from "react";
+import { darkTheme, lightTheme } from "./pages/theme";
 
 // Yerel fontlar
 const geistSans = localFont({
@@ -28,25 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   // Tema oluşturuluyor (client-side)
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: "dark", // Karanlık mod
-        },
-      }),
-    []
-  );
+// const { mode }: any = useRoutesContext()
 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-rest-veryDarkBlue`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-rest-veryDarkBlue bg-rest-white`}
       >
         <RoutesContextProvider>
-          <ThemeProvider theme={theme}>
-            <Container className="flex flex-col gap-4" maxWidth="lg">
-              <div className="mb-5">
+          <ThemeProvider theme={"light" === "light" ? darkTheme : lightTheme}>
+            <Container  className="flex flex-col gap-4 " maxWidth="lg">
+              <div className="mb-5 bg-rest-veryLightGray">
                 <HeaderPage />
               </div>
               {children}

@@ -14,10 +14,10 @@ export default function SearchBar() {
       <TextField
         value={filterName}
         onChange={(e) => setFilterName(e.target.value.toLowerCase())}
-        className=' bg-rest-darkBlue w-96'
+        className=' dark:bg-rest-darkBlue bg-rest-white w-96'
         id="outlined-textarea"
-        label="Country Search"
-        placeholder="Country"
+        label="Search for a country..."
+        placeholder="Country..."
         multiline
       />
 

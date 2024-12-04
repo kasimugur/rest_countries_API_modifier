@@ -1,64 +1,22 @@
-// 'use client'
-import * as React from 'react';
-import RadioGroup from '@mui/material/RadioGroup';
-import Radio from '@mui/material/Radio';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { useColorScheme } from '@mui/material/styles';
-import { Button, Menu } from '@mui/material';
+"use client"
+import { useRoutesContext } from '@/app/context/RoutesContext'
+import { DarkMode, LightMode } from '@mui/icons-material'
+import { Button } from '@mui/material'
+import React, { useMemo, useState } from 'react'
+
+
 
 export default function ThemaModal() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const {mode, setMode}:any = useRoutesContext()
+  const handleClick = useMemo<()=> void>(() => {
+    return () => {
+      setMode((prevMode):any => (prevMode === 'light' ? 'dark' : 'light'))
+    }
+  }, [])
 
-  const { mode, setMode } = useColorScheme();
-  if (!mode) {
-    return null;
-  }
-  console.log("theme modal", mode)
   return (
     <>
-      <div className=''>
-        <Button
-          id="basic-button"
-          aria-controls={open ? 'basic-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClick}
-        >
-          Dashboardd
-        </Button>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            'aria-labelledby': 'basic-button',
-          }}>
-          <FormControl>
-            <RadioGroup
-              aria-labelledby="demo-theme-toggle"
-              name="theme-toggle"
-              row
-              value={mode}
-              onChange={(event) =>
-                setMode(event.target.value as 'system' | 'light' | 'dark')
-              }>
-              <FormControlLabel value="system" control={<Radio />} label="System" />
-              <FormControlLabel value="light" control={<Radio />} label="Light" />
-              <FormControlLabel value="dark" control={<Radio />} label="Dark" />
-            </RadioGroup>
-          </FormControl>
-        </Menu>
-      </div>
+    <Button onClick={() => handleClick()} variant='text' startIcon={mode === "dark" ?<LightMode /> : <DarkMode />} color='primary' > {mode === "dark" ? "Light Mode" : "Dark Mode"}</Button>
     </>
-  );
+  )
 }
-

@@ -8,7 +8,7 @@ export default function CountryCard({e}:any) {
     <>
 
     
-          <Card  sx={{ maxWidth: 300 }}>
+          <Card className='dark:bg-rest-veryDarkBlue'  sx={{ maxWidth: 300 }}>
             <CardMedia
               sx={{ height: 160 }}
               image={e.flag}

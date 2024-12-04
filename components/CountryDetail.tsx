@@ -1,22 +1,23 @@
 'use client'
 import React from 'react'
 import data from "@/data.json"
-import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material';
 import { KeyboardBackspace } from '@mui/icons-material';
 import Link from 'next/link';
+import { useRoutesContext } from '@/app/context/RoutesContext';
 
 interface CountryDetailProps {
   slug: string | string[] | undefined; // Allow slug to be string, string[], or undefined
 }
 export default function CountryDetail({ slug }: CountryDetailProps) {
+  const {dataCountry}:any = useRoutesContext()
   const router = useRouter()
-  const numericCode = data.filter(e => String(e.numericCode) === slug)
+  const numericCode = dataCountry.filter(e => String(e.numericCode) === slug)
   const dataCountryBorder = numericCode.find(e => e.alpha3Code)
-  const countryBorder = data.find(country => country.alpha3Code === dataCountryBorder?.alpha3Code);
+  const countryBorder = dataCountry.find(country => country.alpha3Code === dataCountryBorder?.alpha3Code);
   const borderCountries = countryBorder?.borders
-  const borderCountryInfo = data.filter(country => borderCountries?.includes(country.alpha3Code))
+  const borderCountryInfo = dataCountry.filter(country => borderCountries?.includes(country.alpha3Code))
 
 
   return (
@@ -78,12 +79,12 @@ export default function CountryDetail({ slug }: CountryDetailProps) {
                     <Typography className='flex mb-1 text-sm' variant="body2" >
                       Top Level Domain:   {e.topLevelDomain}
                     </Typography>
-                    <Typography className='flex mb-1 text-sm' variant="body2" >
+                    <Box className='flex mb-1 text-sm' component={"div"} >
                       Currencies:  {e.currencies?.map(item => <Typography variant='body2'>{`${item.name}, `}  </Typography>)}
-                    </Typography>
-                    <Typography className='flex mb-1 text-sm' variant="body2" >
+                    </Box>
+                    <Box className='flex mb-1 text-sm' component={"div"} >
                       Languages:   {e.languages.map(item => <Typography variant='body2'>{`${item.name}, `}  </Typography>)}
-                    </Typography>
+                    </Box>
                   </CardContent>
                 </CardContent>
                 <CardActions sx={{ mx: '1.5rem' }} >
@@ -94,8 +95,8 @@ export default function CountryDetail({ slug }: CountryDetailProps) {
                     gap: '10px',
                     justifyContent: 'start',
                   }}>
-                    {borderCountryInfo && borderCountryInfo?.map((country, index) => (
-                      <Link key={index} href={`/detail/${country.numericCode}`}>
+                    {borderCountryInfo && borderCountryInfo?.map((country) => (
+                      <Link key={country.numericCode} href={`/detail/${country.numericCode}`}>
                         <Button sx={{
                           backgroundColor: '#2b3945',
                           fontSize: '10px',
