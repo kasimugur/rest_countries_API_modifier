@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.country_Card{
+  @apply bg-rest-white text-black dark:text-white dark:bg-rest-veryDarkBlue  !important;
+}
+.countryCardDetail{
+  @apply bg-rest-white text-black dark:text-white dark:bg-rest-veryDarkBlue text-rest-veryTextBlue dark:text-rest-veryLightGray !important;
+}
+.textFieldInput{
+  @apply   shadow-md dark:bg-rest-darkBlue bg-rest-white/50 w-96 !important;
+}
+.header{
+  @apply  border-b-[1px]  dark:bg-rest-darkBlue  border-rest-darkGray/50 bg-rest-white  flex justify-between w-full p-4 !important;
+}

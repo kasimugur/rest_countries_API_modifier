@@ -14,7 +14,7 @@ export default function SearchBar() {
       <TextField
         value={filterName}
         onChange={(e) => setFilterName(e.target.value.toLowerCase())}
-        className=' dark:bg-rest-darkBlue bg-rest-white w-96'
+        className='textFieldInput'
         id="outlined-textarea"
         label="Search for a country..."
         placeholder="Country..."
