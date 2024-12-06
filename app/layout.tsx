@@ -28,13 +28,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Tema oluşturuluyor (client-side)
-// const { mode }: any = useRoutesContext()
 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-rest-veryDarkBlue bg-rest-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-rest-white  dark:bg-rest-veryDarkBlue`}
       >
         <RoutesContextProvider>
           <ThemeProvider theme={"light" === "light" ? darkTheme : lightTheme}>

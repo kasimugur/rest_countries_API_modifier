@@ -46,49 +46,49 @@ export default function CountryDetail({ slug }: CountryDetailProps) {
             </Box>
             <Box className="flex basis-2/4">
               <Card
-                className='bg-rest-veryDarkBlue'
+                className='countryCardDetail'
                 sx={{
                   background: "hsl(207, 26%, 17%)",
                   boxShadow: "none",
                   width: '100%'
                 }}>
-                <Typography sx={{ px: '2rem', mt: '0.5rem', color: 'hsl(0, 0%, 100%)' }} gutterBottom variant="h5" component="div">
+                <Typography className='px-8 mt-2 text-rest-veryTextBlue dark:text-rest-white' gutterBottom variant="h5" component="div">
                   {e.name}
                 </Typography>
-                <CardContent sx={{ display: 'flex', gap: '2rem', color: 'hsl(0, 0%, 80%)' }} >
+                <CardContent className='flex gap-8 ' >
 
-                  <CardContent >
+                  <CardContent  className='flex flex-col gap-1 text-sm' >
                     <Typography
-                      className='flex mb-1' variant="body2" >
+                       variant="body2" >
                       Native Name:   {e.nativeName}
                     </Typography>
-                    <Typography className='flex mb-1 text-sm' variant="body2" >
+                    <Typography  variant="body2" >
                       Population:   {e.population}
                     </Typography>
-                    <Typography className='flex mb-1 text-sm' variant="body2" >
+                    <Typography  variant="body2" >
                       Region:   {e.region}
                     </Typography>
-                    <Typography className='flex mb-1 text-sm' variant='body2' >
+                    <Typography  variant='body2' >
                       Sub Region:   {e.subregion}
                     </Typography>
-                    <Typography className='flex mb-1 text-sm' variant="body2" >
+                    <Typography  variant="body2" >
                       Capital:   {e.capital}
                     </Typography>
                   </CardContent>
-                  <CardContent>
-                    <Typography className='flex mb-1 text-sm' variant="body2" >
+                  <CardContent className='flex flex-col gap-1 text-sm'>
+                    <Typography  variant="body2" >
                       Top Level Domain:   {e.topLevelDomain}
                     </Typography>
-                    <Box className='flex mb-1 text-sm' component={"div"} >
+                    <Box  component={"div"} >
                       Currencies:  {e.currencies?.map(item => <Typography variant='body2'>{`${item.name}, `}  </Typography>)}
                     </Box>
-                    <Box className='flex mb-1 text-sm' component={"div"} >
+                    <Box  component={"div"} >
                       Languages:   {e.languages.map(item => <Typography variant='body2'>{`${item.name}, `}  </Typography>)}
                     </Box>
                   </CardContent>
                 </CardContent>
                 <CardActions sx={{ mx: '1.5rem' }} >
-                  <Typography variant='subtitle1' sx={{ color: 'hsl(0, 0%, 80%) '}} > Border Countries :</Typography>
+                  <Typography variant='subtitle1'> Border Countries :</Typography>
                   <Box sx={{
                     display: 'flex',
                     flexWrap: 'wrap',
