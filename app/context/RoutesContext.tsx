@@ -10,8 +10,7 @@ interface routesType {
   inputSearch: Country;
   filterName: string;
   setFilterName: Dispatch<SetStateAction<string | null>>;
-  mode: string
-  setMode: Dispatch<SetStateAction<string>>
+
 }
 
 const RoutesContext = createContext<routesType | undefined>(undefined)
@@ -19,7 +18,6 @@ const RoutesContext = createContext<routesType | undefined>(undefined)
 export const RoutesContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [filterData, setFilterData] = useState<string | null>(null)
   const [filterName, setFilterName] = useState<string | null>('')
-  const [mode, setMode] = useState<string>("light")
   const inputSearch = dataCountry.filter((item) => {
     if (filterName !== null) {
       return item.name.toLowerCase().includes(filterName)
@@ -32,9 +30,7 @@ export const RoutesContextProvider: React.FC<{ children: ReactNode }> = ({ child
     filterName,
     setFilterName,
     inputSearch,
-    dataCountry,
-    mode,
-    setMode
+    dataCountry
   }
   console.log("filterData----", filterData)
   console.log("filterName----", typeof (filterName))

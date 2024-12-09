@@ -5,7 +5,8 @@ export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1976d2',
+      main: '#ff0000',
+      light: '#ff0000'
        // Aydınlık tema için ana mavi renk
     },
     background: {

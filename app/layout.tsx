@@ -2,11 +2,11 @@
 
 import localFont from "next/font/local";
 import "./globals.css";
-import { RoutesContextProvider, useRoutesContext } from "./context/RoutesContext";
-import {  Container, createTheme, ThemeProvider } from "@mui/material";
+import { RoutesContextProvider } from "./context/RoutesContext";
+import {  Button, Container, createTheme, ThemeProvider } from "@mui/material";
 import HeaderPage from "@/components/Header";
-import { useMemo } from "react";
 import { darkTheme, lightTheme } from "./pages/theme";
+import { useState } from "react";
 
 // Yerel fontlar
 const geistSans = localFont({
@@ -28,17 +28,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [darkMode, setDarkMode] = useState<Boolean>(false);
 
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? darkTheme.palette.mode : lightTheme.palette.mode,
+    },
+  });
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.documentElement.classList.toggle('dark', !darkMode)
+  };
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-rest-white  dark:bg-rest-veryDarkBlue`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased transition duration-500 bg-rest-white  dark:bg-rest-veryDarkBlue`}
       >
         <RoutesContextProvider>
-          <ThemeProvider theme={"light" === "light" ? darkTheme : lightTheme}>
+          <ThemeProvider theme={theme}>
             <Container  className="flex flex-col gap-4 " maxWidth="lg">
               <div className="mb-5 bg-rest-veryLightGray">
-                <HeaderPage />
+                <HeaderPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
               </div>
               {children}
             </Container>

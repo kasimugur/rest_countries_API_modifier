@@ -28,7 +28,7 @@ export default function CountryCard({ e }: any) {
         </CardContent>
         <CardActions>
           <Link className='w-full ' href={`/detail/${e.numericCode}`}>
-            <Button className='w-full ' size="small" variant='text'>Detail</Button>
+            <Button className='w-full ' size="small" variant='text' >Detail</Button>
           </Link>
         </CardActions>
       </Card>

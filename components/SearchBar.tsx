@@ -22,7 +22,7 @@ export default function SearchBar() {
       />
 
       <Autocomplete
-        className='bg-rest-darkBlue'
+        className='textFilter'
         value={filterData}
         onChange={(event: any, newValue: string | null) => {
           setFilterData(newValue);
