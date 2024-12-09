@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 .country_Card{
-  @apply bg-rest-white text-black dark:text-white dark:bg-rest-veryDarkBlue  !important;
+  @apply transition duration-500 bg-rest-white text-black dark:text-white dark:bg-rest-veryDarkBlue  !important;
 }
 .countryCardDetail{
-  @apply bg-rest-white text-black dark:text-white dark:bg-rest-veryDarkBlue text-rest-veryTextBlue dark:text-rest-veryLightGray !important;
+  @apply transition duration-500 bg-rest-white dark:text-white dark:bg-rest-veryDarkBlue text-rest-veryTextBlue dark:text-rest-veryLightGray !important;
 }
 .textFieldInput{
-  @apply   shadow-md dark:bg-rest-darkBlue bg-rest-white/50 w-96 !important;
+  @apply transition duration-500   shadow-md dark:bg-rest-darkBlue bg-rest-white/50 w-96 !important;
 }
 .header{
-  @apply  border-b-[1px]  dark:bg-rest-darkBlue  border-rest-darkGray/50 bg-rest-white  flex justify-between w-full p-4 !important;
+  @apply transition duration-500  border-b-[1px]  dark:bg-rest-darkBlue  border-rest-darkGray/50 bg-rest-white  flex justify-between w-full p-4 !important;
+}
+.textFilter{
+  @apply transition duration-500   shadow-md dark:bg-rest-darkBlue bg-rest-white/50  !important;
 }

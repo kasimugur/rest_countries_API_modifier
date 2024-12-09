@@ -6,17 +6,18 @@ import React, { useMemo, useState } from 'react'
 
 
 
-export default function ThemaModal() {
-  const {mode, setMode}:any = useRoutesContext()
-  const handleClick = useMemo<()=> void>(() => {
+export default function ThemaModal({ toggleDarkMode, darkMode }) {
+  const { mode, setMode }: any = useRoutesContext()
+  const handleClick = useMemo<() => void>(() => {
     return () => {
-      setMode((prevMode):any => (prevMode === 'light' ? 'dark' : 'light'))
+      setMode((prevMode): string => (prevMode === 'light' ? 'dark' : 'light'))
     }
   }, [])
 
   return (
     <>
-    <Button onClick={() => handleClick()} variant='text' startIcon={mode === "dark" ?<LightMode /> : <DarkMode />} color='primary' > {mode === "dark" ? "Light Mode" : "Dark Mode"}</Button>
+      <Button onClick={() => toggleDarkMode()} variant='text' startIcon={darkMode === false ? <LightMode /> : <DarkMode />} color='primary' >
+       {darkMode === false ? "Light Mode" : "Dark Mode"}</Button>
     </>
   )
 }
