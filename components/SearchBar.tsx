@@ -4,7 +4,7 @@ import React from 'react'
 import data from '@/data.json'
 import { useRoutesContext } from '@/app/context/RoutesContext'
 export default function SearchBar() {
-  const { filterData, setFilterData, filterName, setFilterName }: any = useRoutesContext()
+  const { filterData, setFilterData, filterName, setFilterName } = useRoutesContext()
   const RegionData = data.map(reg => reg.region)
   const Duplicates = RegionData.filter((reg, index, self) => self.indexOf(reg) !== index)
   const uniqueDuplicates = [...new Set(Duplicates)];
@@ -24,7 +24,7 @@ export default function SearchBar() {
       <Autocomplete
         className='textFilter'
         value={filterData}
-        onChange={(event: any, newValue: string | null) => {
+        onChange={(event, newValue: string | null) => {
           setFilterData(newValue);
         }}
         id="controllable-states-demo"

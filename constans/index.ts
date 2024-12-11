@@ -5,10 +5,10 @@ interface Currency {
 }
 
 interface Language {
-  iso639_1: string;
+  iso639_1?: string;
   iso639_2: string;
   name: string;
-  nativeName: string;
+  nativeName?: string;
 }
 
 interface Flag {
@@ -28,25 +28,25 @@ export interface Country {
   alpha2Code: string;
   alpha3Code: string;
   callingCodes: string[];
-  capital: string;
-  altSpellings: string[];
+  capital?: string;
+  altSpellings?: string[];
   subregion: string;
   region: string;
   population: number;
-  latlng: number[];
+  latlng?: number[]; // [latitude, longitude]
   demonym: string;
-  area: number;
-  gini?: number; // Gini katsayısı isteğe bağlı
+  area?: number; // Opsiyonel, bazı ülkeler için boş olabilir
+  gini?: number; // Opsiyonel
   timezones: string[];
-  borders?: string[];
+  borders?: string[]; // Komşu ülkeler, bazı ülkelerde yok
   nativeName: string;
   numericCode: string;
   flags: Flag;
-  currencies: Currency[];
+  currencies?: Currency[];
   languages: Language[];
-  translations: Record<string, string>; // Dillerin çevirileri
-  flag: string;
-  regionalBlocs: RegionalBloc[];
-  cioc: string;
+  translations: Record<string, string | undefined>; // Dinamik çeviri değerleri
+  flag: string; // Eski bayrak değeri, flags altında da mevcut
+  regionalBlocs?: RegionalBloc[]; // Opsiyonel, bazı ülkelerde yok
+  cioc?: string; // Olimpiyat kodu, opsiyonel
   independent: boolean;
 }

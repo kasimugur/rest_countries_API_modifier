@@ -1,18 +1,12 @@
 "use client"
-import { useRoutesContext } from '@/app/context/RoutesContext'
 import { DarkMode, LightMode } from '@mui/icons-material'
 import { Button } from '@mui/material'
-import React, { useMemo, useState } from 'react'
+import React from 'react'
 
 
 
-export default function ThemaModal({ toggleDarkMode, darkMode }) {
-  const { mode, setMode }: any = useRoutesContext()
-  const handleClick = useMemo<() => void>(() => {
-    return () => {
-      setMode((prevMode): string => (prevMode === 'light' ? 'dark' : 'light'))
-    }
-  }, [])
+export default function ThemaModal({ toggleDarkMode, darkMode }:any) {
+
 
   return (
     <>

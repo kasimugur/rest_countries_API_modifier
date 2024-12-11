@@ -1,5 +1,5 @@
 'use client'
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import dataCountry from '@/data.json'
 import { Country } from "@/constans";
 
@@ -7,10 +7,9 @@ interface routesType {
   dataCountry: Country[];
   filterData: string | null;
   setFilterData: Dispatch<SetStateAction<string | null>>;
-  inputSearch: Country;
-  filterName: string;
+  inputSearch: Country[];
+  filterName: string | null;
   setFilterName: Dispatch<SetStateAction<string | null>>;
-
 }
 
 const RoutesContext = createContext<routesType | undefined>(undefined)
@@ -24,6 +23,10 @@ export const RoutesContextProvider: React.FC<{ children: ReactNode }> = ({ child
     }
     return true
   })
+  useEffect(() => {
+    
+  }, [])
+  
   const data = {
     filterData,
     setFilterData,
@@ -32,9 +35,7 @@ export const RoutesContextProvider: React.FC<{ children: ReactNode }> = ({ child
     inputSearch,
     dataCountry
   }
-  console.log("filterData----", filterData)
-  console.log("filterName----", typeof (filterName))
-  console.log("inputsearch----", typeof (inputSearch))
+  
   return (
     <RoutesContext.Provider value={data} >
       {children}

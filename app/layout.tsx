@@ -3,7 +3,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { RoutesContextProvider } from "./context/RoutesContext";
-import {  Button, Container, createTheme, ThemeProvider } from "@mui/material";
+import {  Container, createTheme, ThemeProvider } from "@mui/material";
 import HeaderPage from "@/components/Header";
 import { darkTheme, lightTheme } from "./pages/theme";
 import { useState } from "react";
@@ -20,7 +20,9 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-
+// interface RootLayoutProps {
+//   toggleDarkMode : ()=> void
+// }
 
 // RootLayout
 export default function RootLayout({
@@ -36,7 +38,7 @@ export default function RootLayout({
     },
   });
 
-  const toggleDarkMode = () => {
+  const toggleDarkMode:()=> void = () => {
     setDarkMode(!darkMode);
     document.documentElement.classList.toggle('dark', !darkMode)
   };

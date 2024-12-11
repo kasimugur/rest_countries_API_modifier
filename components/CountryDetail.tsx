@@ -1,17 +1,18 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import data from "@/data.json"
 import { useRouter } from 'next/navigation';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material';
 import { KeyboardBackspace } from '@mui/icons-material';
 import Link from 'next/link';
 import { useRoutesContext } from '@/app/context/RoutesContext';
+import { Country } from '@/constans';
 
 interface CountryDetailProps {
   slug: string | string[] | undefined; // Allow slug to be string, string[], or undefined
 }
 export default function CountryDetail({ slug }: CountryDetailProps) {
-  const {dataCountry}:any = useRoutesContext()
+  const {dataCountry} = useRoutesContext()
   const router = useRouter()
   const numericCode = dataCountry.filter(e => String(e.numericCode) === slug)
   const dataCountryBorder = numericCode.find(e => e.alpha3Code)
@@ -19,6 +20,18 @@ export default function CountryDetail({ slug }: CountryDetailProps) {
   const borderCountries = countryBorder?.borders
   const borderCountryInfo = dataCountry.filter(country => borderCountries?.includes(country.alpha3Code))
 
+  useEffect(()=>{
+  // altSpellings özelliği olmayan bir ülkenin numericCode değerini bulma
+const findNumericCodeWithoutAltSpellings = (countries: Country[]) => {
+  return countries.filter(country => !country.altSpellings).map(country => ({
+      name: country.name,
+      numericCode: country.numericCode
+  }));
+};
+
+const result = findNumericCodeWithoutAltSpellings(dataCountry);
+console.log(result); // [{ name: "Brezilya", numericCode: "76" }]
+  },[])
 
   return (
     <>
