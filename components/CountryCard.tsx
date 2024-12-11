@@ -3,7 +3,11 @@ import React from 'react'
 
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import Link from 'next/link'
-export default function CountryCard({ e }: any) {
+import { Country } from '@/constans'
+interface CountryCardProps {
+  e: Country
+}
+export default function CountryCard({ e }:CountryCardProps) {
   return (
     <>
       <Card className='country_Card ' sx={{ maxWidth: 300 }}>
