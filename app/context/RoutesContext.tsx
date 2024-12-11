@@ -1,5 +1,5 @@
 'use client'
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 import dataCountry from '@/data.json'
 import { Country } from "@/constans";
 
@@ -17,16 +17,15 @@ const RoutesContext = createContext<routesType | undefined>(undefined)
 export const RoutesContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [filterData, setFilterData] = useState<string | null>(null)
   const [filterName, setFilterName] = useState<string | null>('')
+
   const inputSearch = dataCountry.filter((item) => {
     if (filterName !== null) {
       return item.name.toLowerCase().includes(filterName)
     }
     return true
   })
-  useEffect(() => {
-    
-  }, [])
-  
+
+
   const data = {
     filterData,
     setFilterData,
@@ -35,7 +34,7 @@ export const RoutesContextProvider: React.FC<{ children: ReactNode }> = ({ child
     inputSearch,
     dataCountry
   }
-  
+
   return (
     <RoutesContext.Provider value={data} >
       {children}

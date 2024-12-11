@@ -5,7 +5,11 @@ import React from 'react'
 
 
 
-export default function ThemaModal({ toggleDarkMode, darkMode }:any) {
+interface ThemaModalProps {
+  toggleDarkMode: () => void;
+  darkMode: boolean;
+}
+export default function ThemaModal({ toggleDarkMode, darkMode }:ThemaModalProps) {
 
 
   return (

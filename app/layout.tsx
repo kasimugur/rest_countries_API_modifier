@@ -1,12 +1,12 @@
-"use client"; 
+"use client";
 
 import localFont from "next/font/local";
 import "./globals.css";
 import { RoutesContextProvider } from "./context/RoutesContext";
-import {  Container, createTheme, ThemeProvider } from "@mui/material";
+import { Container, createTheme, ThemeProvider } from "@mui/material";
 import HeaderPage from "@/components/Header";
 import { darkTheme, lightTheme } from "./pages/theme";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 // Yerel fontlar
 const geistSans = localFont({
@@ -20,27 +20,25 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// interface RootLayoutProps {
-//   toggleDarkMode : ()=> void
-// }
-
-// RootLayout
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [darkMode, setDarkMode] = useState<Boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
 
-  const theme = createTheme({
+  const theme = useMemo(() => createTheme({
     palette: {
       mode: darkMode ? darkTheme.palette.mode : lightTheme.palette.mode,
     },
-  });
+  }), [darkMode])
 
-  const toggleDarkMode:()=> void = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark', !darkMode)
+  const toggleDarkMode: () => void = () => {
+    setDarkMode(prevMode => {
+      const newMode = !prevMode;
+      document.documentElement.classList.toggle('dark', newMode);
+      return newMode;
+    });
   };
   return (
     <html lang="en">
@@ -49,7 +47,7 @@ export default function RootLayout({
       >
         <RoutesContextProvider>
           <ThemeProvider theme={theme}>
-            <Container  className="flex flex-col gap-4 " maxWidth="lg">
+            <Container className="flex flex-col gap-4 " maxWidth="lg">
               <div className="mb-5 bg-rest-veryLightGray">
                 <HeaderPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
               </div>

@@ -7,7 +7,7 @@ import { Country } from "@/constans";
 export default function Home() {
   const { filterData, inputSearch } = useRoutesContext()
   const filterCountry: Country[] = filterData !== null ? inputSearch.filter(e => e.region === filterData) : inputSearch
-  console.log()
+  
   return (
     <>
       <Box component={"div"}>
